@@ -3,18 +3,14 @@ pool:
   vmImage: 'macOS-10.15'
 steps:
 - task: NodeTool@0
-  inputs:
-    versionSpec: '9.7.1'
   displayName: 'Install Node'
-- script: npm install
+  inputs:
+    versionSpec: '12.16.1'
+- script: yarn install
   displayName: 'Install dependencies'
-- script: |
-    cd ios
-    bundle install
-    fastlane build
-  displayName: 'Build iOS'
-- script: |
-    cd android
-    bundle install
-    fastlane build
-  displayName: 'Build android'
+- script: yarn run test
+  displayName: 'Run testing'
+# - script: yarn run ios
+#   displayName: 'Run ios'
+# - script: yarn run android
+#   displayName: 'Run android'
